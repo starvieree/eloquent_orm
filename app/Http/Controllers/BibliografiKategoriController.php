@@ -16,11 +16,8 @@ class BibliografiKategoriController extends Controller
     }
 
     public function Display() {
-        $bibliografiKategori = BibliografiKategori::all();
-
-        foreach ($bibliografiKategori as $data) {
-            echo $data->deskripsi . "<br>";
-        }
+        $data['records'] = BibliografiKategori::with('Bibliografi')->get();
+        return view('display_bibliografi_kategori', $data);
     }
 
     public function Edit($id, $deskripsi) {
